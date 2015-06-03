@@ -3,6 +3,12 @@
         "path": "tests/files/alpha.data",
         "sha256": "28c5a49c7ca7bfe152055ccf7c0c05527232e8a5bf7e805daad0e5ec02099cb0"
     },
+    "partial": {
+        "path": "tests/files/beta_alpha_beta.data",
+        "length": 1024,
+        "offset": 1024,
+        "sha256": "28c5a49c7ca7bfe152055ccf7c0c05527232e8a5bf7e805daad0e5ec02099cb0"
+    },
     "offset": {
         "path": "tests/files/beta_alpha.data",
         "offset": 1024,
@@ -13,7 +19,7 @@
         "length": 1024,
         "sha256": "28c5a49c7ca7bfe152055ccf7c0c05527232e8a5bf7e805daad0e5ec02099cb0"
     },
-    "bounds_exceeded": {
+    "bounds": {
         "path": "tests/files/alpha.data",
         "length": 1025
     },
@@ -25,10 +31,14 @@
         "path": "tests/files/alpha.data",
         "offset": -1
     },
-    "offset_length": {
+    "seed": {
+        "file_path": "tests/files/alpha.data",
+        "seed_path": "tests/files/seed.data",
+        "sha256": "fdef74d4f1c03d4de291df15e0fdb0a31e36fb72a54632b05eda632fefe39cdf"
+    },
+    "scatter": {
         "path": "tests/files/beta_alpha_beta.data",
         "length": 1024,
-        "offset": 1024,
-        "sha256": "28c5a49c7ca7bfe152055ccf7c0c05527232e8a5bf7e805daad0e5ec02099cb0"
+        "offset": 1024
     }
 }
