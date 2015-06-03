@@ -12,6 +12,14 @@ import codecs
 
 class PartialHash(object):
 
+    class BoundsError(Exception):
+
+        def __init__(self, size, length, offset):
+            msg = ("Bounds error! length (%s), offset (%s) must be >= 0"
+                   " and length + offset (%s) <= size (%s).")
+            args = (length, offset, length + offset, size)
+            Exception.__init__(self, msg % args)
+
     def bytestoint(self, data):
         return int(codecs.encode(data, 'hex'), 16)
 
@@ -22,7 +30,7 @@ class PartialHash(object):
         obj.seek(0,2)
         size = obj.tell()
         if length < 0 or offset < 0 or length + offset > size:
-            raise Exception("bounds error")
+            raise self.BoundsError(size, length, offset)
 
         # start reading from offset
         obj.seek(offset)

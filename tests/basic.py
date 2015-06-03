@@ -36,12 +36,26 @@ class TestPartialHash(unittest.TestCase):
         digest = partialhash(path, length=length)
         self.assertEqual(digest, expected)
 
-    def test_length_exceeded(self):
+    def test_bounds_exceeded(self):
         def callback():
-            path = fixtures["length_exceeded"]["path"]
-            length = fixtures["length_exceeded"]["length"]
+            path = fixtures["bounds_exceeded"]["path"]
+            length = fixtures["bounds_exceeded"]["length"]
             partialhash(path, length=length)
-        self.assertRaises(Exception, callback)
+        self.assertRaises(partialhash.BoundsError, callback)
+
+    def test_negative_length(self):
+        def callback():
+            path = fixtures["negative_length"]["path"]
+            length = fixtures["negative_length"]["length"]
+            partialhash(path, length=length)
+        self.assertRaises(partialhash.BoundsError, callback)
+
+    def test_negative_offset(self):
+        def callback():
+            path = fixtures["negative_offset"]["path"]
+            offset = fixtures["negative_offset"]["offset"]
+            partialhash(path, offset=offset)
+        self.assertRaises(partialhash.BoundsError, callback)
 
     def test_offset_length(self):
         path = fixtures["offset_length"]["path"]
