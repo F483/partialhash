@@ -2,7 +2,7 @@
 partialhash
 ###########
 
-A library to read/write data to bitcoin transactions as nulldata outputs.
+Library to partialy hash files.
 
 
 ============
