@@ -17,17 +17,25 @@ fixtures = json.load(open("tests/fixtures.json"))
 class TestPartialHash(unittest.TestCase):
 
     def test_fullfile(self):
-        path = fixtures["alpha"]["path"]
-        expected = fixtures["alpha"]["sha256"]
-        digest = partialhash.file_path(path)
+        path = fixtures["full"]["path"]
+        expected = fixtures["full"]["sha256"]
+        digest = partialhash(path)
         self.assertEqual(digest, expected)
 
     def test_offset(self):
-        offset = fixtures["betaalpha"]["offset"]
-        path = fixtures["betaalpha"]["path"]
-        expected = fixtures["betaalpha"]["sha256"]
-        digest = partialhash.file_path(path, offset=offset)
+        path = fixtures["offset"]["path"]
+        offset = fixtures["offset"]["offset"]
+        expected = fixtures["offset"]["sha256"]
+        digest = partialhash(path, offset=offset)
         self.assertEqual(digest, expected)
+
+    def test_length(self):
+        path = fixtures["length"]["path"]
+        length = fixtures["length"]["length"]
+        expected = fixtures["length"]["sha256"]
+        digest = partialhash(path, length=length)
+        self.assertEqual(digest, expected)
+
 
 if __name__ == '__main__':
     unittest.main()

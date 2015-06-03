@@ -1,11 +1,16 @@
 {
-    "alpha": {
+    "full": {
         "path": "tests/alpha.data",
         "sha256": "28c5a49c7ca7bfe152055ccf7c0c05527232e8a5bf7e805daad0e5ec02099cb0"
     },
-    "betaalpha": {
+    "offset": {
         "path": "tests/betaalpha.data",
         "offset": 1024,
+        "sha256": "28c5a49c7ca7bfe152055ccf7c0c05527232e8a5bf7e805daad0e5ec02099cb0"
+    },
+    "length": {
+        "path": "tests/alphabeta.data",
+        "length": 1024,
         "sha256": "28c5a49c7ca7bfe152055ccf7c0c05527232e8a5bf7e805daad0e5ec02099cb0"
     }
 }
