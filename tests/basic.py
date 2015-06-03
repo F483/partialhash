@@ -6,22 +6,28 @@
 
 from __future__ import print_function
 from __future__ import unicode_literals
+import json
 import unittest
 import partialhash
 
 
-file_path = "tests/random.data"
-filesha256 = "28c5a49c7ca7bfe152055ccf7c0c05527232e8a5bf7e805daad0e5ec02099cb0"
+fixtures = json.load(open("tests/fixtures.json"))
 
 
 class TestPartialHash(unittest.TestCase):
 
     def test_fullfile(self):
-        # equivalant to 
-        # sha256sum tests/random.data
-        digest = partialhash.hash_path(file_path)
-        self.assertEqual(digest, filesha256)
+        path = fixtures["alpha"]["path"]
+        expected = fixtures["alpha"]["sha256"]
+        digest = partialhash.file_path(path)
+        self.assertEqual(digest, expected)
 
+    def test_offset(self):
+        offset = fixtures["betaalpha"]["offset"]
+        path = fixtures["betaalpha"]["path"]
+        expected = fixtures["betaalpha"]["sha256"]
+        digest = partialhash.file_path(path, offset=offset)
+        self.assertEqual(digest, expected)
 
 if __name__ == '__main__':
     unittest.main()

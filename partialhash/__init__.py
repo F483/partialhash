@@ -11,16 +11,18 @@ def bytestoint(data):
     return int(codecs.encode(data, 'hex'), 16)
 
 
-def hash_obj(file_obj, hash_algorithm=hashlib.sha256):
+def file_obj(obj, offset=0, hash_algorithm=hashlib.sha256):
     hasher = hash_algorithm()
-    buf = file_obj.read()
+    if offset:
+        obj.seek(offset)
+    buf = obj.read()
     hasher.update(buf)
     digest = hasher.hexdigest()
     return digest
-    
+
     # TODO startindex = bytestoint(seed) % (filesize - lenght) if seed else 0
 
 
-def hash_path(file_path, hash_algorithm=hashlib.sha256):
-    with open(file_path, 'rb') as file_obj:
-        return hash_obj(file_obj, hash_algorithm=hash_algorithm)
+def file_path(path, offset=0, hash_algorithm=hashlib.sha256):
+    with open(path, 'rb') as obj:
+        return file_obj(obj, offset=offset, hash_algorithm=hash_algorithm)
