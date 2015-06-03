@@ -24,7 +24,7 @@ class TestHash(unittest.TestCase):
     def test_full(self):
         path = fixtures["full"]["path"]
         expected = h2b(fixtures["full"]["sha256"])
-        digest = partialhash.sum(path)
+        digest = partialhash.compute(path)
         self.assertEqual(digest, expected)
 
     def test_partial(self):
@@ -32,15 +32,8 @@ class TestHash(unittest.TestCase):
         length = fixtures["partial"]["length"]
         offset = fixtures["partial"]["offset"]
         expected = h2b(fixtures["partial"]["sha256"])
-        digest = partialhash.sum(path, length=length, offset=offset)
+        digest = partialhash.compute(path, length=length, offset=offset)
         self.assertEqual(digest, expected)
-
-    def test_bounds(self):
-        def callback():
-            path = fixtures["bounds"]["path"]
-            length = fixtures["bounds"]["length"]
-            partialhash.sum(path, length=length)
-        self.assertRaises(partialhash.BoundsError, callback)
 
 
 class TestLength(unittest.TestCase):
@@ -49,15 +42,8 @@ class TestLength(unittest.TestCase):
         path = fixtures["length"]["path"]
         length = fixtures["length"]["length"]
         expected = h2b(fixtures["length"]["sha256"])
-        digest = partialhash.sum(path, length=length)
+        digest = partialhash.compute(path, length=length)
         self.assertEqual(digest, expected)
-
-    def test_negative_length(self):
-        def callback():
-            path = fixtures["negative_length"]["path"]
-            length = fixtures["negative_length"]["length"]
-            partialhash.sum(path, length=length)
-        self.assertRaises(partialhash.BoundsError, callback)
 
 
 class TestOffset(unittest.TestCase):
@@ -66,15 +52,8 @@ class TestOffset(unittest.TestCase):
         path = fixtures["offset"]["path"]
         offset = fixtures["offset"]["offset"]
         expected = h2b(fixtures["offset"]["sha256"])
-        digest = partialhash.sum(path, offset=offset)
+        digest = partialhash.compute(path, offset=offset)
         self.assertEqual(digest, expected)
-
-    def test_negative_offset(self):
-        def callback():
-            path = fixtures["negative_offset"]["path"]
-            offset = fixtures["negative_offset"]["offset"]
-            partialhash.sum(path, offset=offset)
-        self.assertRaises(partialhash.BoundsError, callback)
 
 
 class TestSeed(unittest.TestCase):
@@ -83,8 +62,9 @@ class TestSeed(unittest.TestCase):
         seed_path = fixtures["seed"]["seed_path"]
         file_path = fixtures["seed"]["file_path"]
         expected = h2b(fixtures["seed"]["sha256"])
-        with open(seed_path, 'rb') as seed:
-            digest = partialhash.sum(file_path, seed=seed.read())
+        with open(seed_path, 'rb') as seed_file:
+            seed_data = seed_file.read()
+            digest = partialhash.compute(file_path, seed=seed_data)
             self.assertEqual(digest, expected)
 
 
@@ -94,7 +74,7 @@ class TestScatter(unittest.TestCase):
         path = fixtures["scatter"]["path"]
         length = fixtures["scatter"]["length"]
         offset = fixtures["scatter"]["offset"]
-        partialhash.sum(path, length=length, offset=offset, scatter=4)
+        partialhash.compute(path, length=length, offset=offset, scatter=4)
         # FIXME how to test correctness?
 
 

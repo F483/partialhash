@@ -22,7 +22,7 @@ def bytestoint(data):
     return int(codecs.encode(data, 'hex'), 16)
 
 
-def file_obj(obj, offset=0, length=0, seed=b"", scatter=0,
+def compute_from_obj(obj, offset=0, length=0, seed=b"", scatter=0,
              hash_algorithm=hashlib.sha256):
 
     # bounds check
@@ -47,17 +47,18 @@ def file_obj(obj, offset=0, length=0, seed=b"", scatter=0,
     # scatter if given
     if scatter:
         offset = bytestoint(digest) % (size - length)
-        return file_obj(obj, offset=offset, length=length, seed=digest,
-                        scatter=(scatter - 1), hash_algorithm=hash_algorithm)
+        return compute_from_obj(obj, offset=offset, length=length,
+                                seed=digest, scatter=(scatter - 1),
+                                hash_algorithm=hash_algorithm)
     return digest
 
 
-def file_path(path, *args, **kwargs):
+def compute_from_path(path, *args, **kwargs):
     with open(path, 'rb') as obj:
-        return file_obj(obj, *args, **kwargs)
+        return compute_from_obj(obj, *args, **kwargs)
 
 
-def sum(f, *args, **kwargs):
+def compute(f, *args, **kwargs):
     if type(f) in [type('str'), type(u'unicode')]:
-        return file_path(f, *args, **kwargs)
+        return compute_from_path(f, *args, **kwargs)
     return file_obj(f, *args, **kwargs)
