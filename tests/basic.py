@@ -36,6 +36,21 @@ class TestPartialHash(unittest.TestCase):
         digest = partialhash(path, length=length)
         self.assertEqual(digest, expected)
 
+    def test_length_exceeded(self):
+        def callback():
+            path = fixtures["length_exceeded"]["path"]
+            length = fixtures["length_exceeded"]["length"]
+            partialhash(path, length=length)
+        self.assertRaises(Exception, callback)
+
+    def test_offset_length(self):
+        path = fixtures["offset_length"]["path"]
+        length = fixtures["offset_length"]["length"]
+        offset = fixtures["offset_length"]["offset"]
+        expected = fixtures["offset_length"]["sha256"]
+        digest = partialhash(path, length=length, offset=offset)
+        self.assertEqual(digest, expected)
+
 
 if __name__ == '__main__':
     unittest.main()

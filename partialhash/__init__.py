@@ -18,17 +18,24 @@ class PartialHash(object):
     def file_obj(self, obj, offset=0, length=0, hash_algorithm=hashlib.sha256):
         hasher = hash_algorithm()
 
-        if offset:
-            obj.seek(offset)
+        # bounds check
+        obj.seek(0,2)
+        size = obj.tell()
+        if length < 0 or offset < 0 or length + offset > size:
+            raise Exception("bounds error")
 
+        # start reading from offset
+        obj.seek(offset)
+
+        # hash data
         buf = obj.read(length) if length else obj.read()
-
         hasher.update(buf)
         digest = hasher.hexdigest()
+
         return digest
 
         # TODO nextseed = digest
-        # TODO nextoffset = self.bytestoint(digest) % (filesize - lenght)
+        # TODO nextoffset = self.bytestoint(digest) % (size - lenght)
 
     def file_path(self, path, *args, **kwargs):
         with open(path, 'rb') as obj:

@@ -4,13 +4,23 @@
         "sha256": "28c5a49c7ca7bfe152055ccf7c0c05527232e8a5bf7e805daad0e5ec02099cb0"
     },
     "offset": {
-        "path": "tests/betaalpha.data",
+        "path": "tests/beta_alpha.data",
         "offset": 1024,
         "sha256": "28c5a49c7ca7bfe152055ccf7c0c05527232e8a5bf7e805daad0e5ec02099cb0"
     },
     "length": {
-        "path": "tests/alphabeta.data",
+        "path": "tests/alpha_beta.data",
         "length": 1024,
+        "sha256": "28c5a49c7ca7bfe152055ccf7c0c05527232e8a5bf7e805daad0e5ec02099cb0"
+    },
+    "length_exceeded": {
+        "path": "tests/alpha.data",
+        "length": 1025
+    },
+    "offset_length": {
+        "path": "tests/beta_alpha_beta.data",
+        "length": 1024,
+        "offset": 1024,
         "sha256": "28c5a49c7ca7bfe152055ccf7c0c05527232e8a5bf7e805daad0e5ec02099cb0"
     }
 }
