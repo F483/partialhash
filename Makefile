@@ -26,15 +26,20 @@ devsetup: clean
 
 
 test:
-	env/py2/bin/python setup.py test
-	env/py3/bin/python setup.py test
+	@env/py2/bin/python setup.py test
+	@env/py3/bin/python setup.py test
 	# TODO add static analisys
 	# TODO add lint
 	# TODO add coverage
 	# import pudb; pu.db # set break point
 
 
+profile:
+	env/py2/bin/python tests/profile.py
+	env/py3/bin/python tests/profile.py
+
+
 publish: test
-	env/py3/bin/python setup.py register sdist upload
+	@env/py3/bin/python setup.py register sdist upload
 
 

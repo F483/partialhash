@@ -76,6 +76,7 @@ class TestScatter(unittest.TestCase):
         offset = fixtures["scatter"]["offset"]
         partialhash.compute(path, length=length, offset=offset, scatter=4)
         # FIXME how to test correctness?
+        # all zero file should have same hash for scatter if total input equal
 
 
 if __name__ == '__main__':

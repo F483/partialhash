@@ -23,11 +23,12 @@ def bytestoint(data):
 
 
 def compute_from_obj(obj, offset=0, length=0, seed=b"", scatter=0,
-             hash_algorithm=hashlib.sha256):
+                     hash_algorithm=hashlib.sha256):
 
     # bounds check
     obj.seek(0, 2)
     size = obj.tell()
+    length = length if length else size - offset
     if length < 0 or offset < 0 or length + offset > size:
         raise BoundsError(size, length, offset)
 
@@ -40,8 +41,11 @@ def compute_from_obj(obj, offset=0, length=0, seed=b"", scatter=0,
         hasher.update(seed)
 
     # hash data
-    buf = obj.read(length) if length else obj.read()
-    hasher.update(buf)
+    chunklimit = 1024 * 1024 * 100  # 100mb
+    chunks = [chunklimit] * (length // chunklimit) + [length % chunklimit]
+    for chunksize in chunks:
+        buf = obj.read(chunksize)
+        hasher.update(buf)
     digest = hasher.digest()
 
     # scatter if given
@@ -59,6 +63,6 @@ def compute_from_path(path, *args, **kwargs):
 
 
 def compute(f, *args, **kwargs):
-    if type(f) in [type('str'), type(u'unicode')]:
+    if type(f) in [type(b'bytes'), type('str'), type(u'unicode')]:
         return compute_from_path(f, *args, **kwargs)
-    return file_obj(f, *args, **kwargs)
+    return compute_from_obj(f, *args, **kwargs)
