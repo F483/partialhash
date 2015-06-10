@@ -6,7 +6,6 @@
 from __future__ import print_function
 from __future__ import unicode_literals
 import hashlib
-import codecs
 
 
 class BoundsError(Exception):
@@ -16,10 +15,6 @@ class BoundsError(Exception):
                " and length + offset (%s) <= size (%s).")
         args = (length, offset, length + offset, size)
         Exception.__init__(self, msg % args)
-
-
-def bytestoint(data):
-    return int(codecs.encode(data, 'hex'), 16)
 
 
 def compute_from_obj(obj, offset=0, length=0, seed=b"",
@@ -60,6 +55,16 @@ def compute(f, *args, **kwargs):
     return compute_from_obj(f, *args, **kwargs)
 
 
+#def sample_from_obj(obj, size, count, seed=b"",
+#                    hash_algorithm=hashlib.sha256):
+#    pass
+#
+#
+#def sample_from_path(path, *args, **kwargs):
+#    with open(path, 'rb') as obj:
+#        return sample_from_obj(obj, *args, **kwargs)
+#
+#
 #def sample(f, *args, **kwargs):
 #    if type(f) in [type(b'bytes'), type('str'), type(u'unicode')]:
 #        return sample_from_path(f, *args, **kwargs)

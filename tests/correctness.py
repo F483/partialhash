@@ -35,6 +35,13 @@ class TestHash(unittest.TestCase):
         digest = partialhash.compute(path, length=length, offset=offset)
         self.assertEqual(digest, expected)
 
+    def test_from_obj(self):
+        path = fixtures["full"]["path"]
+        with open(path, 'rb') as obj:
+            expected = h2b(fixtures["full"]["sha256"])
+            digest = partialhash.compute(obj)
+            self.assertEqual(digest, expected)
+
 
 class TestLength(unittest.TestCase):
 
