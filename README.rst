@@ -3,10 +3,20 @@ partialhash
 ###########
 
 
-[![Build Status](https://travis-ci.org/Storj/partialhash.svg)](https://travis-ci.org/Storj/partialhash)
-[![Coverage Status](https://coveralls.io/repos/Storj/partialhash/badge.svg)](https://coveralls.io/r/Storj/partialhash)
-[![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/storj/partialhash/master/LICENSE)
-[![GitHub issues](https://img.shields.io/github/issues/storj/partialhash.svg)](https://github.com/storj/partialhash/issues)
+|BuildLink|_ |CoverageLink|_ |LicenseLink|_ |IssuesLink|_
+
+
+.. |BuildLink| image:: https://travis-ci.org/Storj/partialhash.svg
+.. _BuildLink: https://travis-ci.org/Storj/partialhash
+
+.. |CoverageLink| image:: https://coveralls.io/repos/Storj/partialhash/badge.svg
+.. _CoverageLink: https://coveralls.io/r/Storj/partialhash
+
+.. |LicenseLink| image:: https://img.shields.io/badge/license-MIT-blue.svg
+.. _LicenseLink: https://raw.githubusercontent.com/storj/partialhash/master/LICENSE
+
+.. |IssuesLink| image:: https://img.shields.io/github/issues/storj/partialhash.svg
+.. _IssuesLink: https://github.com/storj/partialhash/issues
 
 
 Library to partialy hash files.
