@@ -22,7 +22,7 @@ def bytestoint(data):
     return int(codecs.encode(data, 'hex'), 16)
 
 
-def compute_from_obj(obj, offset=0, length=0, seed=b"", scatter=0,
+def compute_from_obj(obj, offset=0, length=0, seed=b"",
                      hash_algorithm=hashlib.sha256):
 
     # bounds check
@@ -46,15 +46,7 @@ def compute_from_obj(obj, offset=0, length=0, seed=b"", scatter=0,
     for chunksize in chunks:
         buf = obj.read(chunksize)
         hasher.update(buf)
-    digest = hasher.digest()
-
-    # scatter if given
-    if scatter:
-        offset = bytestoint(digest) % (size - length)
-        return compute_from_obj(obj, offset=offset, length=length,
-                                seed=digest, scatter=(scatter - 1),
-                                hash_algorithm=hash_algorithm)
-    return digest
+    return hasher.digest()
 
 
 def compute_from_path(path, *args, **kwargs):
@@ -66,3 +58,9 @@ def compute(f, *args, **kwargs):
     if type(f) in [type(b'bytes'), type('str'), type(u'unicode')]:
         return compute_from_path(f, *args, **kwargs)
     return compute_from_obj(f, *args, **kwargs)
+
+
+#def sample(f, *args, **kwargs):
+#    if type(f) in [type(b'bytes'), type('str'), type(u'unicode')]:
+#        return sample_from_path(f, *args, **kwargs)
+#    return sample_from_obj(f, *args, **kwargs)

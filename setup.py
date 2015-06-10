@@ -33,8 +33,10 @@ setup(
     install_requires=[
     ],
     tests_require=[
-        #'ipython',
-        #'pudb' # import pudb; pu.db # set break point
+        'coverage',
+        'coveralls',
+        'ipython',
+        'pudb'  # import pudb; pu.db # set break point
     ],
     zip_safe=False,
     classifiers=[

@@ -68,16 +68,5 @@ class TestSeed(unittest.TestCase):
             self.assertEqual(digest, expected)
 
 
-class TestScatter(unittest.TestCase):
-
-    def test_scatter(self):
-        path = fixtures["scatter"]["path"]
-        length = fixtures["scatter"]["length"]
-        offset = fixtures["scatter"]["offset"]
-        partialhash.compute(path, length=length, offset=offset, scatter=4)
-        # FIXME how to test correctness?
-        # all zero file should have same hash for scatter if total input equal
-
-
 if __name__ == '__main__':
     unittest.main()
