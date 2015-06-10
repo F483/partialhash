@@ -2,6 +2,13 @@
 partialhash
 ###########
 
+
+[![Build Status](https://travis-ci.org/Storj/partialhash.svg)](https://travis-ci.org/Storj/partialhash)
+[![Coverage Status](https://coveralls.io/repos/Storj/partialhash/badge.svg)](https://coveralls.io/r/Storj/partialhash)
+[![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/storj/partialhash/master/LICENSE)
+[![GitHub issues](https://img.shields.io/github/issues/storj/partialhash.svg)](https://github.com/storj/partialhash/issues)
+
+
 Library to partialy hash files.
 
 
