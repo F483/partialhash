@@ -13,10 +13,10 @@ partialhash
 .. _CoverageLink: https://coveralls.io/r/Storj/partialhash
 
 .. |LicenseLink| image:: https://img.shields.io/badge/license-MIT-blue.svg
-.. _LicenseLink: https://raw.githubusercontent.com/storj/partialhash/master/LICENSE
+.. _LicenseLink: https://raw.githubusercontent.com/F483/partialhash/master/LICENSE
 
-.. |IssuesLink| image:: https://img.shields.io/github/issues/storj/partialhash.svg
-.. _IssuesLink: https://github.com/storj/partialhash/issues
+.. |IssuesLink| image:: https://img.shields.io/github/issues/F483/partialhash.svg
+.. _IssuesLink: https://github.com/F483/partialhash/issues
 
 
 Library to partialy hash files.
