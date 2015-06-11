@@ -35,6 +35,8 @@ Installation
 Usage
 =====
 
+Compute partial hash of file.
+
 .. code:: python
 
     import binascii
@@ -63,8 +65,3 @@ Usage
     digest = partialhash.compute(path, seed=b'seeddata')
     print(binascii.hexlify(digest))
 
-
-    # recursivly compute sha256 hash until scatter reaches zero
-    # uses digest to deterministically get next offset and seed value
-    digest = partialhash.compute(path, length=1024, scatter=4)
-    print(binascii.hexlify(digest))

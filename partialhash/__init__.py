@@ -32,6 +32,8 @@ def _is_filepath(path):
 
 
 def _bytes_to_int(data):
+    if len(data) == 0:
+        return 0
     return int(codecs.encode(data, 'hex_codec'), 16)
 
 
@@ -61,7 +63,7 @@ def compute_from_obj(obj, offset=0, length=0, seed=b"",
     return hasher.digest()
 
 
-def sample_from_obj(obj, sample_size, sample_count, seed=b"",
+def sample_from_obj(obj, sample_size, sample_count=1, seed=b"",
                     hash_algorithm=hashlib.sha256):
 
     # check input

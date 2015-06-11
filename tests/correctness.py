@@ -75,5 +75,40 @@ class TestSeed(unittest.TestCase):
             self.assertEqual(digest, expected)
 
 
+class TestSample(unittest.TestCase):
+
+    def test_sample_full(self):
+        path = fixtures["sample"]["full"]["path"]
+        sample_size = fixtures["sample"]["full"]["sample_size"]
+        expected = h2b(fixtures["sample"]["full"]["sha256"])
+        digest = partialhash.sample(path, sample_size)
+        self.assertEqual(digest, expected)
+
+    def test_sample_half_no_seed(self):
+        path = fixtures["sample"]["half_no_seed"]["path"]
+        sample_size = fixtures["sample"]["half_no_seed"]["sample_size"]
+        expected = h2b(fixtures["sample"]["half_no_seed"]["sha256"])
+        digest = partialhash.sample(path, sample_size)
+        self.assertEqual(digest, expected)
+
+    def test_sample_seed(self):
+        path = fixtures["sample"]["seed"]["path"]
+        seed_path = fixtures["sample"]["seed"]["seed_path"]
+        sample_size = fixtures["sample"]["seed"]["sample_size"]
+        expected = h2b(fixtures["sample"]["seed"]["sha256"])
+        with open(seed_path, 'rb') as seed_file:
+            seed_data = seed_file.read()
+            digest = partialhash.sample(path, sample_size, seed=seed_data)
+            self.assertEqual(digest, expected)
+
+    def test_multisample_obj(self):
+        path = fixtures["sample"]["multisample_obj"]["path"]
+        sample_size = fixtures["sample"]["multisample_obj"]["sample_size"]
+        sample_count = fixtures["sample"]["multisample_obj"]["sample_count"]
+        with open(path, 'rb') as obj:
+            partialhash.sample(obj, sample_size, sample_count=sample_count)
+
+
+
 if __name__ == '__main__':
     unittest.main()

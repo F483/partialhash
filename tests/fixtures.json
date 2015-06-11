@@ -36,9 +36,27 @@
         "seed_path": "tests/files/seed.data",
         "sha256": "fdef74d4f1c03d4de291df15e0fdb0a31e36fb72a54632b05eda632fefe39cdf"
     },
-    "scatter": {
-        "path": "tests/files/beta_alpha_beta.data",
-        "length": 1024,
-        "offset": 1024
+    "sample": {
+        "full": {
+            "path": "tests/files/alpha.data",
+            "sample_size": 1024,
+            "sha256": "28c5a49c7ca7bfe152055ccf7c0c05527232e8a5bf7e805daad0e5ec02099cb0"
+        },
+        "half_no_seed": {
+            "path": "tests/files/alpha_beta.data",
+            "sample_size": 1024,
+            "sha256": "28c5a49c7ca7bfe152055ccf7c0c05527232e8a5bf7e805daad0e5ec02099cb0"
+        },
+        "seed": {
+            "path": "tests/files/alpha.data",
+            "seed_path": "tests/files/seed.data",
+            "sample_size": 1024,
+            "sha256": "fdef74d4f1c03d4de291df15e0fdb0a31e36fb72a54632b05eda632fefe39cdf"
+        },
+        "multisample_obj": {
+            "path": "tests/files/alpha.data",
+            "sample_size": 256,
+            "sample_count": 3
+        }
     }
 }
