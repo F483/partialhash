@@ -57,6 +57,11 @@
             "path": "tests/files/alpha.data",
             "sample_size": 256,
             "sample_count": 3
+        },
+        "oversample_obj": {
+            "path": "tests/files/alpha.data",
+            "sample_size": 256,
+            "sample_count": 6
         }
     }
 }

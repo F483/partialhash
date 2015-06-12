@@ -108,6 +108,12 @@ class TestSample(unittest.TestCase):
         with open(path, 'rb') as obj:
             partialhash.sample(obj, sample_size, sample_count=sample_count)
 
+    def test_oversample_obj(self):
+        path = fixtures["sample"]["oversample_obj"]["path"]
+        sample_size = fixtures["sample"]["oversample_obj"]["sample_size"]
+        sample_count = fixtures["sample"]["oversample_obj"]["sample_count"]
+        with open(path, 'rb') as obj:
+            partialhash.sample(obj, sample_size, sample_count=sample_count)
 
 
 if __name__ == '__main__':
