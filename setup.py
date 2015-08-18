@@ -4,22 +4,19 @@
 # License: MIT (see LICENSE file)
 
 
-import os
 from setuptools import setup, find_packages
 
 
-THISDIR = os.path.dirname(os.path.abspath(__file__))
-os.chdir(THISDIR)
+exec(open('partialhash/version.py').read())
 
 
-VERSION = open("version.txt").readline().strip()
 DOWNLOAD_BASEURL = "https://pypi.python.org/packages/source/a/partialhash/"
-DOWNLOAD_URL = DOWNLOAD_BASEURL + "partialhash-%s.tar.gz" % VERSION
+DOWNLOAD_URL = DOWNLOAD_BASEURL + "partialhash-%s.tar.gz" % __version__  # NOQA
 
 
 setup(
     name='partialhash',
-    version=VERSION,
+    version=__version__,  # NOQA
     description=('Library to partialy hash files.'),
     long_description=open("README.rst").read(),
     keywords=("sha256, partial, hash"),
@@ -30,21 +27,18 @@ setup(
     packages=find_packages(),
     download_url = DOWNLOAD_URL,
     test_suite="tests",
-    install_requires=[
-    ],
+    install_requires=[],
     tests_require=[
         'coverage',
         'coveralls',
-        'ipython',
-        'pudb'  # import pudb; pu.db # set break point
     ],
     zip_safe=False,
     classifiers=[
         # "Development Status :: 1 - Planning",
         # "Development Status :: 2 - Pre-Alpha",
-        "Development Status :: 3 - Alpha",
+        # "Development Status :: 3 - Alpha",
         # "Development Status :: 4 - Beta",
-        # "Development Status :: 5 - Production/Stable",
+        "Development Status :: 5 - Production/Stable",
         "Intended Audience :: Developers",
         "License :: OSI Approved :: MIT License",
         "Operating System :: OS Independent",

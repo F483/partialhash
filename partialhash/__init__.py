@@ -7,6 +7,7 @@ from __future__ import print_function
 from __future__ import unicode_literals
 import hashlib
 import codecs
+from .version import __version__  # NOQA
 
 
 class BoundsError(Exception):
