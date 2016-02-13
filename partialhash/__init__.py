@@ -57,7 +57,7 @@ def compute_from_obj(obj, offset=0, length=0, seed=b"",
         hasher.update(seed)
 
     # hash data
-    chunks = _as_chunks(length, 1024 * 1024 * 100)  # max 100mb chunks
+    chunks = _as_chunks(length, 1024 * 1024)  # 1M chunks for low RAM machines
     for chunk_size in chunks:
         buf = obj.read(chunk_size)
         hasher.update(buf)
